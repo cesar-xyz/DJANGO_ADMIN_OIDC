@@ -1,5 +1,5 @@
 """
-URL configuration for DJANGO_ADMIN_OIDC project.
+URL configuration for DJANGO_ADMIN_KEYCLOAK project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import keycloak_callback, keycloak_login, login_error, custom_login_view, custom_logout
+
+admin.site.login = custom_login_view
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("dadmin/", admin.site.urls),
+    path("logout/", custom_logout, name='custom_logout'),
+    path("dadmin/login/", custom_login_view, name='custom_login'),
+    path('login/', keycloak_login, name='login'),
+    path('login/callback/', keycloak_callback),
+    path('login/error/', login_error, name='login_error'),
+    path('oidc/', include('allauth.urls')),
 ]

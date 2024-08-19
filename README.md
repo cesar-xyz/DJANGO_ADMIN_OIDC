@@ -59,4 +59,3 @@ urlpatterns = [
     path('oidc/', include('django_admin_oidc.urls')),
 ]
 ```
-# DJANGO_ADMIN_OIDC

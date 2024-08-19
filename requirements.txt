@@ -1,0 +1,6 @@
+django
+mozilla-django-oidc
+django-allauth
+djangorestframework
+requests
+pyjwt
